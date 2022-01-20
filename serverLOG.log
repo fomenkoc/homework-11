@@ -1,0 +1,2 @@
+2022-01-19 14:46:14 ERROR RoleDao:68 - java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'Test role' for key 'role.role_name'
+2022-01-20 12:24:28 ERROR UserDao:122 - java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`store`.`cart`, CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`))

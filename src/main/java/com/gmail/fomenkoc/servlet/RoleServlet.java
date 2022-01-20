@@ -1,0 +1,35 @@
+package com.gmail.fomenkoc.servlet;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.gmail.fomenkoc.dao.impl.RoleDao;
+import com.gmail.fomenkoc.domain.Role;
+import com.google.gson.Gson;
+
+@WebServlet(name = "role", urlPatterns = { "/role" })
+public class RoleServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		
+		RoleDao roleDao = new RoleDao();
+		Integer roleID;
+
+		HttpSession session = request.getSession();
+		roleID = Integer.parseInt(session.getAttribute("roleID").toString());
+		Role role = roleDao.read(roleID);
+		
+		String json = new Gson().toJson(role);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(json);
+	}
+
+}
